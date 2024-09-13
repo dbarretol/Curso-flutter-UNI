@@ -41,6 +41,14 @@ class _SuppliersScreenState extends State<SuppliersScreen> {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       home: Scaffold(
+        appBar: AppBar(
+            title: const Text('Proveedores'),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            )),
         body: Center(
           child: _suppliers.isEmpty
               ? const CircularProgressIndicator()
@@ -54,10 +62,19 @@ class _SuppliersScreenState extends State<SuppliersScreen> {
                         horizontal: Dimensions.smallPadding,
                       ),
                       child: ListTile(
-                        title: Text(supplier["nombreempresa"] ?? 'No name'),
-                        subtitle:
-                            Text(supplier["nombrecontacto"] ?? 'No contact'),
-                      ),
+                          title: Text(supplier["nombreempresa"] ?? 'No name',
+                              style: Theme.of(context).textTheme.titleLarge),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                supplier["nombrecontacto"] ?? 'No contact',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(supplier["cargocontacto"] ?? 'No cargo'),
+                            ],
+                          )),
                     );
                   },
                 ),
