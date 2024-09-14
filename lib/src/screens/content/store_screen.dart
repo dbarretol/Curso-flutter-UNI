@@ -57,33 +57,47 @@ class _StoreScreenState extends State<StoreScreen> {
                     return Stack(children: [
                       Image.network(
                           "https://servicios.campus.pe/" + category["foto"]),
-                      Row(
-                        children: [
-                          Text(
-                            category["idcategoria"] ?? 'No category',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayLarge
-                                ?.copyWith(color: AppColors.onPrimary),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            // Added alignment for better layout
+                      Positioned.fill(
+                          child: Container(
+                        color: AppColors.onSurface.withOpacity(0.6),
+                      )),
+                      Padding(
+                          padding:
+                              const EdgeInsets.all(Dimensions.mediumPadding),
+                          child: Row(
                             children: [
-                              Text(
-                                category["nombre"] ?? 'No name',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineLarge
-                                    ?.copyWith(color: AppColors.onPrimary),
-                              ),
-                              Text(category["descripcion"] ?? 'No description',
-                                  style: const TextStyle(
-                                      color: AppColors.onPrimary)),
+                              SizedBox(
+                                  width: 60,
+                                  child: Text(
+                                    category["idcategoria"] ?? 'No category',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge
+                                        ?.copyWith(color: AppColors.onPrimary),
+                                  )),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  // Added alignment for better layout
+                                  children: [
+                                    Text(
+                                      category["nombre"] ?? 'No name',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineLarge
+                                          ?.copyWith(
+                                              color: AppColors.onPrimary),
+                                    ),
+                                    Text(
+                                        category["descripcion"] ??
+                                            'No description',
+                                        style: const TextStyle(
+                                            color: AppColors.onPrimary)),
+                                  ],
+                                ),
+                              )
                             ],
-                          ),
-                        ],
-                      )
+                          ))
                     ]);
                   },
                 ),
