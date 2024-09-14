@@ -55,8 +55,11 @@ class _StoreScreenState extends State<StoreScreen> {
                   itemBuilder: (context, index) {
                     final category = _categories[index];
                     return Stack(children: [
-                      Image.network(
-                          "https://servicios.campus.pe/" + category["foto"]),
+                      Positioned.fill(
+                        child: Image.network(
+                            "https://servicios.campus.pe/" + category["foto"],
+                            fit: BoxFit.cover),
+                      ),
                       Positioned.fill(
                           child: Container(
                         color: AppColors.onSurface.withOpacity(0.6),
@@ -70,6 +73,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                   width: 60,
                                   child: Text(
                                     category["idcategoria"] ?? 'No category',
+                                    textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayLarge
