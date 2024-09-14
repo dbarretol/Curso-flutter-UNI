@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/utils/app_colors.dart';
 import 'package:myapp/utils/dimensions.dart';
 
 class StoreScreen extends StatefulWidget {
@@ -53,29 +54,37 @@ class _StoreScreenState extends State<StoreScreen> {
                   itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     final category = _categories[index];
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: Dimensions.tinyPadding,
-                        horizontal: Dimensions.smallPadding,
-                      ),
-                      child: Column(
-                        // Added alignment for better layout
+                    return Stack(children: [
+                      Image.network(
+                          "https://servicios.campus.pe/" + category["foto"]),
+                      Row(
                         children: [
-                          Image.network("https://servicios.campus.pe/" +
-                              category["foto"]),
                           Text(
                             category["idcategoria"] ?? 'No category',
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayLarge
+                                ?.copyWith(color: AppColors.onPrimary),
                           ),
-                          Text(
-                            category["nombre"] ?? 'No name',
-                          ),
-                          Text(
-                            category["descripcion"] ?? 'No description',
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // Added alignment for better layout
+                            children: [
+                              Text(
+                                category["nombre"] ?? 'No name',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge
+                                    ?.copyWith(color: AppColors.onPrimary),
+                              ),
+                              Text(category["descripcion"] ?? 'No description',
+                                  style: const TextStyle(
+                                      color: AppColors.onPrimary)),
+                            ],
                           ),
                         ],
-                      ),
-                    );
+                      )
+                    ]);
                   },
                 ),
         ),
