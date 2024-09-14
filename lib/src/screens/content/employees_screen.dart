@@ -9,10 +9,10 @@ class EmployeesScreen extends StatefulWidget {
   const EmployeesScreen({super.key});
 
   @override
-  _EmployeeScreenState createState() => _EmployeeScreenState();
+  _EmployeesScreenState createState() => _EmployeesScreenState();
 }
 
-class _EmployeeScreenState extends State<EmployeesScreen> {
+class _EmployeesScreenState extends State<EmployeesScreen> {
   List<dynamic> _employees = [];
 
   @override
@@ -33,6 +33,9 @@ class _EmployeeScreenState extends State<EmployeesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return MaterialApp(
       theme: AppTheme.lightTheme,
       home: Scaffold(
@@ -49,58 +52,57 @@ class _EmployeeScreenState extends State<EmployeesScreen> {
           child: _employees.isEmpty
               ? const CircularProgressIndicator()
               : ListView.builder(
+                  scrollDirection: Axis.horizontal,
                   itemCount: _employees.length,
                   itemBuilder: (context, index) {
                     final employee = _employees[index];
-                    return Stack(children: [
-                      Positioned.fill(
-                        child: Image.network(
-                            "https://servicios.campus.pe/fotos/" + employee["foto"],
-                            fit: BoxFit.cover),
-                      ),
-                      Positioned.fill(
+                    return Stack(
+                      children: [
+                        Image.network(
+                          "https://servicios.campus.pe/fotos/" +
+                              employee["foto"],
+                          width: screenWidth,
+                          height: screenHeight,
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned.fill(
                           child: Container(
-                        color: AppColors.onSurface.withOpacity(0.6),
-                      )),
-                      Padding(
-                          padding:
-                              const EdgeInsets.all(Dimensions.mediumPadding),
-                          child: Row(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                  AppColors.onSecondary.withOpacity(1),
+                                  Colors.transparent
+                                ],
+                                    stops: const [0.0,0.5]
+                                    )),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: Dimensions.mediumPadding,
+                          right: Dimensions.mediumPadding,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                  width: 60,
-                                  child: Text(
-                                    employee["idempleado"] ?? 'No id',
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge
-                                        ?.copyWith(color: AppColors.onPrimary),
-                                  )),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  // Added alignment for better layout
-                                  children: [
-                                    Text(
-                                      employee["nombres"] ?? 'No name',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineLarge
-                                          ?.copyWith(
-                                              color: AppColors.onPrimary),
-                                    ),
-                                    Text(
-                                        employee["apellidos"] ??
-                                            'No description',
-                                        style: const TextStyle(
-                                            color: AppColors.onPrimary)),
-                                  ],
+                              Text(
+                                (employee["nombres"] + ' ' + employee["apellidos"] )?? 'No name' ,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(color: AppColors.onPrimary),
+                              ),
+                              Text(
+                                employee["cargo"] ?? 'No position',
+                                style: const TextStyle(
+                                  color: AppColors.onPrimary,
                                 ),
-                              )
+                              ),
                             ],
-                          ))
-                    ]);
+                          ),
+                        ),
+                      ],
+                    );
                   },
                 ),
         ),
