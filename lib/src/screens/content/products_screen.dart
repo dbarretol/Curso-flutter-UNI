@@ -61,7 +61,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   return Card(
                     elevation: 5,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7) ),
+                        borderRadius: BorderRadius.circular(7)),
                     child: Column(
                       children: [
                         Image.network(
@@ -78,6 +78,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           .toStringAsFixed(2)}',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
+                        if (product["preciorebajado"] != '0')
+                          Text(
+                            'S/ ${double.parse(product["precio"]).toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              color: Colors.black38,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
                       ],
                     ),
                   );
