@@ -64,6 +64,12 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
                           width: screenWidth,
                           height: screenHeight,
                           fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                         ),
                         Positioned.fill(
                           child: Container(
@@ -75,8 +81,10 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
                                   AppColors.onSecondary.withOpacity(1),
                                   Colors.transparent
                                 ],
-                                    stops: const [0.0,0.5]
-                                    )),
+                                    stops: const [
+                                  0.0,
+                                  0.5
+                                ])),
                           ),
                         ),
                         Positioned(
@@ -86,7 +94,10 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                (employee["nombres"] + ' ' + employee["apellidos"] )?? 'No name' ,
+                                (employee["nombres"] +
+                                        ' ' +
+                                        employee["apellidos"]) ??
+                                    'No name',
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineMedium
