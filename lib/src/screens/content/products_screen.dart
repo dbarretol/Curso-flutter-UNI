@@ -50,10 +50,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
             ? const CircularProgressIndicator()
             : GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,//cantidad de columnas
+                  crossAxisCount: 2, //cantidad de columnas
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 3/5,
+                  childAspectRatio: 4 / 6,
                 ),
                 itemCount: _products.length,
                 itemBuilder: (context, index) {
@@ -62,11 +62,16 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     child: Column(
                       children: [
                         Image.network(
-                          'https://servicios.campus.pe/${product["imagenchica"]}',
+                          product["imagenchica"] == null
+                              ? 'https://servicios.campus.pe/imagenes/nofoto.jpg'
+                              : 'https://servicios.campus.pe/${product["imagenchica"]}',
                           fit: BoxFit.cover,
                         ),
-                        Text(product["nombre"]),
-                        Text(product["precio"]),
+                        Text(product["nombre"], textAlign: TextAlign.center),
+                        Text(
+                          's/ ${double.parse(product["precio"]).toStringAsFixed(2)}',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   );
