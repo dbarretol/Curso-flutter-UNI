@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:myapp/src/screens/content/product_detail_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
 
@@ -56,7 +57,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 itemCount: _products.length,
                 itemBuilder: (context, index) {
                   final product = _products[index];
-                  return Card(
+                  return 
+                  InkWell(
+                    onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductDetailScreen(
+                                      productId: product["idproduct"],
+                                    )));
+                    },
+                    child: Card(
                     elevation: 5,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7)),
@@ -99,7 +110,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ),
                       ],
                     ),
-                  );
+                  ));
                 },
               ),
       ),
