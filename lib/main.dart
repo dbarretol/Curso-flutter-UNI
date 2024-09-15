@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/src/screens/splash_screen.dart';
+import 'package:myapp/src/screens/content/directores_screen.dart';
+//import 'package:myapp/src/screens/splash_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      home: const SplashScreen()
+      home: const DirectoresScreen()//SplashScreen()
     );
   }
 }
