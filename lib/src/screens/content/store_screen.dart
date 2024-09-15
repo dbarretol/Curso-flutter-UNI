@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:myapp/src/screens/content/products_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/utils/app_colors.dart';
@@ -54,22 +56,34 @@ class _StoreScreenState extends State<StoreScreen> {
                   itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     final category = _categories[index];
-                    return Stack(children: [
-                      Positioned.fill(
-                        child: Image.network(
-                            "https://servicios.campus.pe/" + category["foto"],
-                            fit: BoxFit.cover),
-                      ),
-                      Positioned.fill(
-                          child: Container(
-                        color: AppColors.onSurface.withOpacity(0.6),
-                      )),
-                      Padding(
-                          padding:
-                              const EdgeInsets.all(Dimensions.mediumPadding),
-                          child: Row(
-                            children: [
-                              SizedBox(
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductsScreen(
+                                      categoryId: category["idcategoria"],
+                                    )));
+                      },
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Image.network(
+                              "https://servicios.campus.pe/" + category["foto"],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned.fill(
+                            child: Container(
+                              color: AppColors.onSurface.withOpacity(0.6),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.all(Dimensions.mediumPadding),
+                            child: Row(
+                              children: [
+                                SizedBox(
                                   width: 60,
                                   child: Text(
                                     category["idcategoria"] ?? 'No category',
@@ -78,31 +92,36 @@ class _StoreScreenState extends State<StoreScreen> {
                                         .textTheme
                                         .displayLarge
                                         ?.copyWith(color: AppColors.onPrimary),
-                                  )),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  // Added alignment for better layout
-                                  children: [
-                                    Text(
-                                      category["nombre"] ?? 'No name',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineLarge
-                                          ?.copyWith(
-                                              color: AppColors.onPrimary),
-                                    ),
-                                    Text(
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        category["nombre"] ?? 'No name',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineLarge
+                                            ?.copyWith(
+                                                color: AppColors.onPrimary),
+                                      ),
+                                      Text(
                                         category["descripcion"] ??
                                             'No description',
                                         style: const TextStyle(
-                                            color: AppColors.onPrimary)),
-                                  ],
+                                            color: AppColors.onPrimary),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              )
-                            ],
-                          ))
-                    ]);
+                              ],
+                            ),
+                          ),
+                        ],
+                      ), // Stack
+                    );
                   },
                 ),
         ),
