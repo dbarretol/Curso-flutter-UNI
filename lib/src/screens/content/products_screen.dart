@@ -59,6 +59,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 itemBuilder: (context, index) {
                   final product = _products[index];
                   return Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7) ),
                     child: Column(
                       children: [
                         Image.network(
@@ -69,7 +72,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         ),
                         Text(product["nombre"], textAlign: TextAlign.center),
                         Text(
-                          's/ ${double.parse(product["precio"]).toStringAsFixed(2)}',
+                          's/ ${double.parse(product["preciorebajado"] == '0' 
+                          ? product["precio"] 
+                          : product["preciorebajado"])
+                          .toStringAsFixed(2)}',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
