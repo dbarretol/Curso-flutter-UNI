@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 //import 'package:myapp/src/screens/content/product_detail_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+
 
 class ProductDetailScreen extends StatefulWidget {
   final String productId; //requiriendo parametro externo
@@ -51,6 +53,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   children: [
                     Text('Nombre: ${_products[0]['nombre']}'),
+                    const Text('Descripción: '),
+                    HtmlWidget(
+                      _products[0]['descripcion']
+                      )                    
                   ],
                 ),
               ),
