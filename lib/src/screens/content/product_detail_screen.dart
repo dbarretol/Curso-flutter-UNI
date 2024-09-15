@@ -5,7 +5,7 @@ import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
 
 class ProductDetailScreen extends StatefulWidget {
-final String productId; //requiriendo parametro externo
+  final String productId; //requiriendo parametro externo
   const ProductDetailScreen({super.key, required this.productId});
 
   @override
@@ -35,12 +35,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'Detalle de productos',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Detalle del producto'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
+        body: _products.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : Center(
+                child: Column(
+                  children: [
+                    Text('Nombre: ${_products[0]['nombre']}'),
+                  ],
+                ),
+              ),
       ),
     );
   }

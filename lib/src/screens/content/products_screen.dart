@@ -57,60 +57,64 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 itemCount: _products.length,
                 itemBuilder: (context, index) {
                   final product = _products[index];
-                  return 
-                  InkWell(
-                    onTap: (){
+                  return InkWell(
+                      onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ProductDetailScreen(
-                                      productId: product["idproduct"],
+                                      productId: product["idproducto"],
                                     )));
-                    },
-                    child: Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7)),
-                    child: Column(
-                      children: [
-                        Stack(
+                      },
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7)),
+                        child: Column(
                           children: [
-                            Image.network(
-                              product["imagenchica"] == null
-                                  ? 'https://servicios.campus.pe/imagenes/nofoto.jpg'
-                                  : 'https://servicios.campus.pe/${product["imagenchica"]}',
-                              fit: BoxFit.cover,
+                            Stack(
+                              children: [
+                                Image.network(
+                                  product["imagenchica"] == null
+                                      ? 'https://servicios.campus.pe/imagenes/nofoto.jpg'
+                                      : 'https://servicios.campus.pe/${product["imagenchica"]}',
+                                  fit: BoxFit.cover,
+                                ),
+                                if (product["preciorebajado"] != '0')
+                                  Container(
+                                    color: Colors.yellow,
+                                    padding: const EdgeInsets.all(8),
+                                    child: Text(
+                                      ((1 -
+                                                      double.parse(product[
+                                                              'preciorebajado']) /
+                                                          double.parse(product[
+                                                              'precio'])) *
+                                                  100)
+                                              .toStringAsFixed(0) +
+                                          '%',
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            Text(product["nombre"],
+                                textAlign: TextAlign.center),
+                            Text(
+                              's/ ${double.parse(product["preciorebajado"] == '0' ? product["precio"] : product["preciorebajado"]).toStringAsFixed(2)}',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             if (product["preciorebajado"] != '0')
-                              Container(
-                                color: Colors.yellow,
-                                padding: const EdgeInsets.all(8),
-                                child: Text(
-                                  ((1 - double.parse(product['preciorebajado']) / double.parse(product['precio'])) * 100)
-                                      .toStringAsFixed(0) + '%',
+                              Text(
+                                'S/ ${double.parse(product["precio"]).toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                  color: Colors.black38,
+                                  decoration: TextDecoration.lineThrough,
                                 ),
                               ),
                           ],
                         ),
-                        Text(product["nombre"], textAlign: TextAlign.center),
-                        Text(
-                          's/ ${double.parse(product["preciorebajado"] == '0'
-                                  ? product["precio"]
-                                  : product["preciorebajado"])
-                              .toStringAsFixed(2)}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        if (product["preciorebajado"] != '0')
-                          Text(
-                            'S/ ${double.parse(product["precio"]).toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              color: Colors.black38,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                      ],
-                    ),
-                  ));
+                      ));
                 },
               ),
       ),
