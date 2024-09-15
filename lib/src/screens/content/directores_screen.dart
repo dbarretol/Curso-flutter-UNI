@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:myapp/src/screens/content/directores_insert_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/utils/dimensions.dart';
@@ -76,6 +77,16 @@ class _DirectoresScreenState extends State<DirectoresScreen> {
                   },
                 ),
         ),
+        floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DirectoresInsertScreen()));
+                },        
+        tooltip: 'Nuevo director',
+        child: const Icon(Icons.add),
+      ),
       ),
     );
   }
