@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
-import 'package:myapp/utils/dimensions.dart';
 
 class ProductsScreen extends StatefulWidget {
   final String categoryId; //requiriendo parametro externo
