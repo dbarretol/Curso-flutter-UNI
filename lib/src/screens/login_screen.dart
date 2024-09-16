@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/src/screens/profile_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +15,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController usuarioController = TextEditingController();
   final TextEditingController claveController = TextEditingController();
+  bool _isSwitched = false;
+
+  Future<void> _guardarDato() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString("datos", "Hola");
+  }
 
   Future<void> loginUser(String usuario, String clave) async {
     final response = await http.post(
@@ -32,7 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
         break;
       default:
         mensaje = "Bienvenido";
-        break;
+        if (_isSwitched == true) {
+          _guardarDato();
+        }
     }
     Fluttertoast.showToast(
         msg: mensaje,
@@ -68,6 +77,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           border: OutlineInputBorder()),
                     ),
                     const SizedBox(height: 20),
+                    const Text('Guardar sesión'),
+                    Switch(
+                        value: _isSwitched,
+                        onChanged: (value) {
+                          setState(() {
+                            _isSwitched = value;
+                          });
+                        }),
                     ElevatedButton(
                         onPressed: () {
                           String usuario = usuarioController.text;

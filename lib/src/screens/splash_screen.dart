@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/src/screens/profile_screen.dart';
 import 'package:myapp/src/screens/welcome_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:myapp/utils/dimensions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,11 +24,22 @@ class _SplashScreenState extends State<SplashScreen> {
     _startAnimation();
   }
 
+  Future<void> _leerDato() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? valorGuardado = prefs.getString("dato");
+    if(valorGuardado != null){
+      Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const ProfileScreen()));
+    } else{
+          Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+    }
+  }
+
   _navigateToWelcome() async {
     await Future.delayed(const Duration(seconds: 7));
     // ignore: use_build_context_synchronously
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+    _leerDato();
   }
 
   _startAnimation() {
