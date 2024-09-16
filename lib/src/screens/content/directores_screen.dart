@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:myapp/src/screens/content/directores_insert_screen.dart';
+import 'package:myapp/src/screens/content/directores_update_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/utils/dimensions.dart';
@@ -60,19 +61,29 @@ class _DirectoresScreenState extends State<DirectoresScreen> {
                         horizontal: Dimensions.smallPadding,
                       ),
                       child: ListTile(
-                          title: Text(director["iddirector"] ?? 'No name',
+                          title: Text(director["iddirector"] ?? 'No id',
                               style: Theme.of(context).textTheme.titleLarge),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                director["nombres"] ?? 'No contact',
+                                director["nombres"] ?? 'No name',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
                               ),
-                              Text(director["peliculas"] ?? 'No cargo'),
+                              Text(director["peliculas"] ?? 'No film'),
                             ],
-                          )),
+                          ),
+                          onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DirectoresUpdateScreen(
+                                      iddirector: director["iddirector"],
+                                      nombres: director["nombres"],
+                                      peliculas: director["peliculas"])));
+                        },
+                      ),
                     );
                   },
                 ),
