@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:myapp/src/screens/content/directores_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class DirectoresInsertScreen extends StatefulWidget {
   const DirectoresInsertScreen({super.key});
@@ -22,6 +24,15 @@ class _DirectoresInsertScreenState extends State<DirectoresInsertScreen> {
           'nombres': nombres,
           'peliculas': peliculas,
         });
+        Fluttertoast.showToast(
+        msg: "Se ha registrado un nuevo director",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        //timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
          Navigator.push(
                       context,
                       MaterialPageRoute(
