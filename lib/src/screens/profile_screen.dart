@@ -13,6 +13,29 @@ class ProfileScreen extends StatelessWidget {
         context, MaterialPageRoute(builder: (context) => const SplashScreen()));
   }
 
+  void _mostrarAlerta(BuildContext context) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Cerrar sesión"),
+            content: const Text("¿Esta seguro que desea cerrar la sesión?"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    _eliminarDato(context);
+                  },
+                  child: const Text("Sí")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: const Text("No"))
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                _eliminarDato(context);
+                _mostrarAlerta(context);
               },
               child: const Text("Cerrar sesión"))
         ])),
