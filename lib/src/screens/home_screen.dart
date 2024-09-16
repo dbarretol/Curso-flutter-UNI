@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/src/screens/content/employees_screen.dart';
 import 'package:myapp/src/screens/content/store_screen.dart';
 import 'package:myapp/src/screens/content/suppliers_screen.dart';
+import 'package:myapp/src/screens/login_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:myapp/utils/app_colors.dart';
 
@@ -60,6 +61,17 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const StoreScreen()));
+                  //Navigator.pop(context);
+                },
+              ),
+                ListTile(
+                leading: const Icon(Icons.login_rounded),
+                title: const Text('Area de clientes'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
                   //Navigator.pop(context);
                 },
               )
