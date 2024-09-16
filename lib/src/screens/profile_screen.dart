@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
       home: const Scaffold(
         body: Center(
           child: Text(
-            'Login',
+            'Profile screen',
           ),
         ),
       ),

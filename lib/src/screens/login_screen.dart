@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:myapp/src/screens/profile_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:http/http.dart' as http;
 
@@ -38,6 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const ProfileScreen()));
   }
 
   @override
