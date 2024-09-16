@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/src/screens/content/directores_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
+import 'package:http/http.dart' as http;
 
 class DirectoresInsertScreen extends StatefulWidget {
   const DirectoresInsertScreen({super.key});
@@ -11,6 +13,20 @@ class DirectoresInsertScreen extends StatefulWidget {
 class _DirectoresInsertScreenState extends State<DirectoresInsertScreen> {
   final TextEditingController nombresController = TextEditingController();
   final TextEditingController peliculasController = TextEditingController();
+
+//Creacion de metodo
+  Future<void> insertDirector(String nombres, String peliculas) async {
+    await http.post(
+        Uri.parse('https://servicios.campus.pe/directoresinsert.php'),
+        body: {
+          'nombres': nombres,
+          'peliculas': peliculas,
+        });
+         Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DirectoresScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +55,7 @@ class _DirectoresInsertScreenState extends State<DirectoresInsertScreen> {
                         onPressed: () {
                           String nombres = nombresController.text;
                           String peliculas = peliculasController.text;
+                          insertDirector(nombres, peliculas);
                         },
                         child: const Text("Guardar"))
                   ],
