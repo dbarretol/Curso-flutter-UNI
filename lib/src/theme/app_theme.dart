@@ -15,7 +15,7 @@ class AppTheme {
         onSecondary: AppColors.onSecondary,
         onSurface: AppColors.onSurface,
         onError: AppColors.onError,
-      ), // ColorScheme. Light
+      ), // ColorScheme.light
 
       textTheme: const TextTheme(
         displayLarge: TextStyle(fontSize: 84, fontWeight: FontWeight.w200),
@@ -23,19 +23,24 @@ class AppTheme {
         bodyMedium: TextStyle(fontSize: 16), //Texto Normal
       ),
       buttonTheme: const ButtonThemeData(
-          buttonColor: AppColors.secondary, 
-          textTheme: ButtonTextTheme.primary
-          ),
+        buttonColor: AppColors.secondary, 
+        textTheme: ButtonTextTheme.primary,
+      ),
       textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-        backgroundColor: AppColors.secondary,
-        foregroundColor: AppColors.primary,
-      )),
+        style: TextButton.styleFrom(
+          backgroundColor: AppColors.secondary,
+          foregroundColor: AppColors.primary,
+        ),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: AppColors.onPrimary,
         ),
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.terciary,
+        foregroundColor: AppColors.onPrimary,
       ),
     );
   }

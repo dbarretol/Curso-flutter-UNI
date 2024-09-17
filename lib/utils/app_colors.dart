@@ -7,6 +7,8 @@ class AppColors {
   static const Color primaryVariant = Color(0xFF1A4870);
   static const Color secondary = Color(0xFFFFAD60);
   static const Color secondaryVariant = Color(0xFF5B99C2);
+  static const Color terciary = Color(0xFFB8001F);
+  static const Color terciaryVariant = Color(0xFFEECAD5);
   static const Color surface = Color(0xFFF9DBBA);
   static const Color error = Color(0xFFFF0000);
 
