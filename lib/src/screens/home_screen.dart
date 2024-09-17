@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/src/screens/content/directores_screen.dart';
 import 'package:myapp/src/screens/content/employees_screen.dart';
 import 'package:myapp/src/screens/content/store_screen.dart';
 import 'package:myapp/src/screens/content/suppliers_screen.dart';
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.store),
+                leading: const Icon(Icons.people_outline),
                 title: const Text('Empleados'),
                 onTap: () {
                   Navigator.push(
@@ -61,6 +62,17 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const StoreScreen()));
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.person_2),
+                title: const Text('Directores'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DirectoresScreen()));
                   //Navigator.pop(context);
                 },
               ),
