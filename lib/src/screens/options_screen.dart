@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/src/components/heading_image.dart';
+import 'package:myapp/src/screens/content/orders_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:myapp/utils/dimensions.dart'; // Asegúrate de tener esta ruta correcta
 
@@ -50,7 +51,11 @@ class OptionsScreen extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navegar a la pantalla de pedidos
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OrdersScreen()),
+                            );
                           },
                           child: const Text('Pedidos'),
                         ),
