@@ -39,7 +39,7 @@ class AppTheme {
         ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.terciary,
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.onPrimary,
       ),
     );

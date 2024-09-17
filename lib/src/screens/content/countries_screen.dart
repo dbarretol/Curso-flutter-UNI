@@ -23,7 +23,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
 
   // Función para obtener los países del servicio web
   Future<void> _fetchCountries() async {
-    final response = await http.get(Uri.parse('https://servicios.campus.pe/paises.php'));
+    final response =
+        await http.get(Uri.parse('https://servicios.campus.pe/paises.php'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
@@ -61,19 +62,34 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       horizontal: 16.0,
                     ),
                     child: Card(
-                      color: AppColors.terciaryVariant,
+                      color: AppColors.primaryVariant,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('ID: ${country["idpais"]}', style: const TextStyle(fontWeight: FontWeight.bold)),
-                            Text('Código: ${country["codpais"]}'),
-                            Text('País: ${country["pais"]}'),
-                            Text('Capital: ${country["capital"]}'),
-                            Text('Área: ${country["area"]} km²'),
-                            Text('Población: ${country["poblacion"]}'),
-                            Text('Continente: ${country["continente"]}'),
+                            Text('ID: ${country["idpais"]}',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary,
+                                    fontWeight: FontWeight.bold)),
+                            Text('Código: ${country["codpais"]}',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary)),
+                            Text('País: ${country["pais"]}',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary)),
+                            Text('Capital: ${country["capital"]}',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary)),
+                            Text('Área: ${country["area"]} km²',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary)),
+                            Text('Población: ${country["poblacion"]}',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary)),
+                            Text('Continente: ${country["continente"]}',
+                                style: const TextStyle(
+                                    color: AppColors.onPrimary)),
                           ],
                         ),
                       ),
@@ -86,7 +102,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const CountriesInsertScreen()),
+            MaterialPageRoute(
+                builder: (context) => const CountriesInsertScreen()),
           );
         },
         tooltip: 'Nuevo país',
