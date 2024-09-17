@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/src/screens/content/countries_insert_screen.dart';
 import 'package:myapp/utils/app_colors.dart';
 //import 'package:your_project/countries_insert_screen.dart'; // Añade el archivo de la nueva pantalla de inserción
 
@@ -83,10 +84,10 @@ class _CountriesScreenState extends State<CountriesScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          /* Navigator.push(
+          Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const CountriesInsertScreen()),
-          ); */
+          );
         },
         tooltip: 'Nuevo país',
         child: const Icon(Icons.add),
