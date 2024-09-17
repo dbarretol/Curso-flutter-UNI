@@ -4,7 +4,7 @@ import 'package:myapp/utils/app_colors.dart';
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
-      fontFamily: 'Urbanist',
+      fontFamily: 'Jost',
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         primaryContainer: AppColors.primaryVariant,

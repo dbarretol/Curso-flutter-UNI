@@ -99,12 +99,21 @@ flutter:
   - assets/images/foto_start.jpg
 
   fonts:
-    - family: Urbanist
+    - family: Jost
       fonts:
-        - asset: assets/fonts/urbanist_regular.ttf
-        - asset: assets/fonts/urbanist_bold.ttf
+        - asset: assets/fonts/Jost_Regular.ttf
+        - asset: assets/fonts/Jost_Bold.ttf
           weight: 700
-        - asset: assets/fonts/urbanist_extralight.ttf
+        - asset: assets/fonts/Jost_Extralight.ttf
           weight: 200
-        - asset: assets/fonts/urbanist_black.ttf
+        - asset: assets/fonts/Jost_Black.ttf
           weight: 900
+
+#         fonts:
+# - asset: assets/fonts/urbanist_regular.ttf
+# - asset: assets/fonts/urbanist_bold.ttf
+#   weight: 700
+# - asset: assets/fonts/urbanist_extralight.ttf
+#   weight: 200
+# - asset: assets/fonts/urbanist_black.ttf
+#   weight: 900
