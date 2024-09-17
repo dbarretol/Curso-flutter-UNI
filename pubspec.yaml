@@ -97,16 +97,17 @@ flutter:
   - assets/images/logo_loki.png
   - assets/images/foto_welcome.jpg
   - assets/images/foto_start.jpg
+  - assets/images/foto_pedidos.jpg
 
   fonts:
     - family: Jost
       fonts:
-        - asset: assets/fonts/Jost_Regular.ttf
-        - asset: assets/fonts/Jost_Bold.ttf
+        - asset: assets/fonts/Jost-Regular.ttf
+        - asset: assets/fonts/Jost-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Jost_Extralight.ttf
+        - asset: assets/fonts/Jost-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/Jost_Black.ttf
+        - asset: assets/fonts/Jost-Black.ttf
           weight: 900
 
 #         fonts:
