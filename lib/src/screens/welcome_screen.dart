@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/src/components/heading_image.dart';
 import 'package:myapp/src/screens/start_screen.dart';
+import 'package:myapp/src/screens/options_screen.dart';
 import 'package:myapp/src/theme/app_theme.dart';
 import 'package:myapp/utils/dimensions.dart';
 
@@ -35,7 +36,9 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.all(Dimensions.mediumPadding),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: Dimensions.tinyPadding,
+                      horizontal: Dimensions.mediumPadding),
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -46,6 +49,22 @@ class WelcomeScreen extends StatelessWidget {
                                 builder: (context) => const StartScreen()));
                       },
                       child: const Text('Empezar'),
+                    ),
+                  )),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: Dimensions.tinyPadding,
+                      horizontal: Dimensions.mediumPadding),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const OptionsScreen()));
+                      },
+                      child: const Text('Opciones'),
                     ),
                   ))
             ],
