@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/src/screens/content/order_detail_screen.dart';
 //import 'order_detail_screen.dart'; // pantalla del detalle
 
 class OrdersScreen extends StatefulWidget {
@@ -56,16 +57,17 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         Text('Fecha: ${order["fechapedido"]}'),
                         Text('Usuario: ${order["usuario"]}'),
                         Text('Cliente: ${order["nombres"]}'),
-                        Text('Total: S/ ${order["total"]}'),
+                        Text('Total: S/ ${double.parse(order["total"]).toStringAsFixed(2)}'),
                       ],
                     ),
                     onTap: () {
-                      /*  Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OrderDetailScreen(idPedido: order["idpedido"]),
+                          builder: (context) =>
+                              OrderDetailScreen(idPedido: order["idpedido"]),
                         ),
-                      ); */
+                      );
                     },
                   ),
                 );
